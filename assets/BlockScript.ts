@@ -43,17 +43,20 @@ export default class BlockScript extends cc.Component {
         return;
        }
        
-       var green= this.getGreen(num) 
+       //var green= this.getGreen(num) 
        //console.log("255,"+green+",0,255");
-       this.node.color=new cc.Color(255,green,0,255);  
+       this.node.color=this.getColor(num);  
        
     }
-    getGreen(num:number):number{
+    getColor(num:number):cc.Color{
         
         //console.log(15-Math.log2(num));
         if(num>=this.blockMaxNum){
-            return 0;
+            return cc.color(255,0,0,255); 
         }
-       return 255 * ((12-(Math.log2(num))/12))  
+       var g= 255 * ((12-(Math.log2(num))/12)) ;
+       var r=255;
+       var b=0;
+       return cc.color(r,g,b,255); 
     }
 }

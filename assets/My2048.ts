@@ -15,13 +15,24 @@ export default class My2048 extends cc.Component {
 
     @property(cc.Node)
     mainPanle: cc.Node = null;
+    
+    @property(cc.Prefab)
+    block:cc.Prefab=null;
 
     //@property
     //text: string = 'hello';
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {}
+    onLoad () {
+        for(var r=1;r<=4;r++){
+            for(var c=1;c<=4;c++){
+                var b:cc.Node=cc.instantiate(this.block);
+                b.name="Block"+r+c;
+                b.parent=this.mainPanle;
+            }
+        }
+    }
 
     start () {
         this.node.on(cc.Node.EventType.TOUCH_START, this.onTouchStartCallback, this, true);
